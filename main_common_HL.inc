@@ -102,7 +102,7 @@ c     irradiance model (routine GCEd, RADTRANX):
       common /cgcirr1/ iein,iblw,jday,rlon,rlat,the,GMThr,pres,am,rh,
      1                 wv,wsm,ws,vi,ro3
       common /cgcirr2/ Eddirgc(nlt),Eddifgc(nlt),Edtotgc(nlt)
-          character*32 gcifile
+          character*120 gcifile
       COMMON/gcifname/gcifile
 c
 c     Cxcl holds arrays accumulated in routine storexcl

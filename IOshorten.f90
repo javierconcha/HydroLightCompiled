@@ -2,15 +2,15 @@
 !   include "..\windows.f90"  -- this is just a reminder that windows.f90 must
 !                             be compiled BEFORE this file since it is USEd below
 
-    module windows_module
+!JC    module windows_module
 !     Note:  this module must occur BEFORE any subroutine that uses it.
 !          Similarly, windows_h (windows.f90) must be compiled before this module.
-      use WIN32MOD
-      implicit none
+!JC      use WIN32MOD
+!JC      implicit none
 
 !      integer :: GetShortPathNameA
-      DLL_IMPORT GetShortPathNameA
-    end module windows_module
+!JC      DLL_IMPORT GetShortPathNameA
+!JC    end module windows_module
 
 
    subroutine IOshorten(iounit, longfn)
@@ -25,7 +25,7 @@
 !     If the file does NOT exist (lreturn = 0), the routine will report the 
 !     error and stop
 
-      use windows_module   
+!JC      use windows_module   
 !     module windows_module must appear in this file before IOshorten which USEs it
 !      implicit none
       character (len=120) :: longfn, longfn0      !long  filename
@@ -38,16 +38,20 @@
       shortfn = char(0)
       longfn0  = trim(longfn(1:119)) // char(0)
 
-      lreturn = GetShortPathNameA(carg(offset(longfn0)),carg(offset(shortfn)),carg(lenfn))
+!JC      lreturn = GetShortPathNameA(carg(offset(longfn0)),carg(offset(shortfn)),carg(lenfn))
 
-      IF(lreturn.gt.0) then
+!JC      IF(lreturn.gt.0) then
+      IF(lenfn.gt.0) then
 !        make sure file is opened as OLD (status) and READONLY (action) to avoid
 !        any conflict opening the file if file is marked 'readonly' by Windows
-        open(iounit, file=shortfn, status='old', ACTION='read')
+!JC        open(iounit, file=shortfn, status='old', ACTION='read')
+        open(iounit, file=trim(longfn), status='old', ACTION='read')
       Else
         call nofile(10, 'IOSHORTEN', longfn)   !err opening file
 
       Endif
+!        print *, "longfn is ", longfn,"end"
+!        print *, "iounit is ", iounit,"end"
 
     end subroutine IOshorten
 

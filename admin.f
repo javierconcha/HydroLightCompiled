@@ -234,19 +234,18 @@ C--------------------------------------------------------------------------
 ! Local variables
       CHARACTER(48) :: sn , user
 
-      DLL_IMPORT :: info
+c      DLL_IMPORT :: info
 
-      call info(user, sn) !call to DLL
+c      call info(user, sn) !call to DLL
 
-      WRITE (Iunit,100) user, sn
+c      WRITE (Iunit,100) user, sn
  
-100   FORMAT (
-     &        "     |     This copy of HE5.2 is ",                        &
-     &        "licensed solely to           |",/"     |   ",a48,        &
-     &        "   |",/                                                  &
-     &   '     |                                                      |'&
-     &      /"     |     S/N ",a44," |",                                &
-     &   )
+c100   FORMAT (
+c     &        "     |     This copy of HE5.2 is ",                        &
+c     &        "licensed solely to           |",/"     |   ",a48,        &
+c     &        "   |",/                                                  &
+c     &   '     |                                                      |'&
+c     &      /"     |     S/N ",a44," |"   )
       END SUBROUTINE LICENSE
 c     **************************************************
 

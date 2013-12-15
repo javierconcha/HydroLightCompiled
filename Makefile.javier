@@ -1,31 +1,43 @@
-FC = /tools/g95/bin/g95
+#FC = /tools/g95/bin/g95
+FC = g95
 
-FFLAGS  = -fsloppy-char
+#FC = /usr/bin/gfortran
+#FFLAGS  =  #-fsloppy-char
+
+#FFLAGS          = -w -c
+
+FFLAGS = -ftrace=full -c
+
+#FFLAGS = -c
+FLFLAGS =
 
 SOURCES_f = $(shell echo *.f)
 
 OBJS_f = $(SOURCES_f:.f=.o)
 
-OBJS_COMMON_f = HE5err.o incfiles_default.o incfiles_stnd.o
+OBJS_COMMON_f = HE5err.o incfiles_default.o incfiles_stnd.o IOshorten.o
 
 EXECUTABLE = mainHL_stnd.exe
 
 all: $(SOURCES_f)  $(EXECUTABLE) $(OBJS_f) $(OBJS_COMMON_f) clean
 
 $(EXECUTABLE):$(OBJS_f) $(OBJS_COMMON_f)
-	$(FC) -o $(EXECUTABLE) $(OBJS_f) $(OBJS_COMMON_f)
+	$(FC) $(FLFLAGS) -o $(EXECUTABLE) $(OBJS_f) $(OBJS_COMMON_f)
 
 .f.o:
-	$(FC) -c $*.f
+	$(FC) $(FFLAGS)  $*.f
+
+IOshorten.o: IOshorten.f90
+	$(FC) $(FFLAGS) IOshorten.f90
 
 incfiles_default.o: incfiles_default.for
-	$(FC) -c incfiles_default.for
+	$(FC) $(FFLAGS) incfiles_default.for
 
 incfiles_stnd.o: incfiles_stnd.for
-	$(FC) -c incfiles_stnd.for
+	$(FC) $(FFLAGS) incfiles_stnd.for
 
 HE5err.o: HE5err.f90
-	$(FC) -c HE5err.f90
+	$(FC) $(FFLAGS) HE5err.f90
 
 clean:
 	@rm -rf *.o

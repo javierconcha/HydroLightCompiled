@@ -78,14 +78,14 @@ c
 c         *write in air values
 		write(10,200) wavelen
 		write(10,203) Eou(0),Eod(0),Eo,Eu(0),Ed(0),fMUu(0),
-	1                      fMUd(0),fMUtot(0),R(0)
+     1                      fMUd(0),fMUtot(0),R(0)
 		if(totalr.ne.1.) write(10,201)
 	else
 c	   ** minimal printout selected
 c         *write in air values
 		write(10,300) wavelen
 		write(10,303) Eo,Eu(0),Ed(0),fMUu(0),
-	1                      fMUd(0),fMUtot(0),R(0)
+     1                      fMUd(0),fMUtot(0),R(0)
 		if(totalr.ne.1.) write(10,201)
 	endif
 	

@@ -69,11 +69,17 @@ c     Open files of phase functions:
 c
       ncomp = imisc(6)
       npfiles = iabs(ncomp)
+cJC      print *,"npfiles is ",npfiles
+cJC      print *,'ncomp is ',ncomp
       DO i=1,npfiles
+cJC         print *,"pfname(i) is ",pfname(i)         
+cJC         print *,"ibbopt(i) is ",ibbopt(i)
          IF(ibbopt(i).ne.0) goto 10
          nuphas(i) = 49+i
-         OPEN(nuphas(i),file=pfname(i),status='old', err=666)
- 10   end do
+cJC         print *,"nuphas(i) is ",nuphas(i)
+cJC         print *,"i is ",i
+         OPEN(nuphas(i),file=trim(pfname(i)),status='old', err=666)
+ 10   enddo
 c
 c     Open scratch files:
 c           nuscr1 holds R(zeta,w) and T(w,zeta)

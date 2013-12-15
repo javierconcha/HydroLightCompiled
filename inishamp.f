@@ -26,7 +26,7 @@ c
      1               zgeo(mxz),zeta(mxz)
       COMMON /CgridPhi/phi(mxphi),bndphi(mxphi)
       COMMON /Ciop/ acoef(mxz,0:mxcomp),bcoef(mxz,0:mxcomp),
-     1		      atten(mxz),albedo(mxz), bbcoef(mxz,0:mxcomp)
+     1        atten(mxz),albedo(mxz), bbcoef(mxz,0:mxcomp)
       COMMON /Cpirrad/ npirad,izirad(mxz)
       Character surfname*120,pfname*120,
      1           Drootname*120,Srootname*120,Mrootname*120,
@@ -179,7 +179,7 @@ c     Since we do not need to calc bbfrac for building up z to zeta table,
 c     set flag to instruct ab routine to NOT recalc b/bb fore this part
       ibbCalc = 0
 
-      call zetatoz 
+     
 
 c     Reset ab routine flag to calculate bb/b for depths as needed, but no the dpf
       ibbCalc = 1
@@ -381,7 +381,7 @@ c	Don't print out component a's and b's if "minimal" printout is selected
 		do iii=1,npirad
 		   izz = izirad(iii)
 		   write(10,1125) izz,zeta(izz),zgeo(izz),
-	1                 (astore(izz,i),i=1,npr),acoef(izz,0)
+     1                 (astore(izz,i),i=1,npr),acoef(izz,0)
 		end do
 c
 c     loop over depth again to print out scattering coefficients.

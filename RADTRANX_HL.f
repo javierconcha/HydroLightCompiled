@@ -43,7 +43,7 @@ c     (RADTRANX: routine GCEd):
       real pres,am,rh,wv,vi,wsm,ro3
       common /cgcirr2/ Eddirgc(nlt),Eddifgc(nlt),Edtotgc(nlt)
       COMMON/gcifname/gcifile
-      character*32 gcifile
+      character*120 gcifile
 c
       data kall/0/
       save kall
@@ -341,8 +341,8 @@ c     **Common block shared only with setdflts.f (& listed in main.f)
 c     **Contains the filename '..\data\RADTRANX_dbase.txt' written
 c     **in a format agreeable with the system (UNIX/PC)
       COMMON/gcifname/gcifile
-      character*32 gcifile
-c
+      character*120 gcifile
+
 c  Light Data
 c
 c      write(10,fmt='(a110)') gcifile
